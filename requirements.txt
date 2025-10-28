@@ -5,3 +5,6 @@ scikit-learn
 pandas
 grpcio
 pyarrow
+xgboost
+catboost
+lightgbm
