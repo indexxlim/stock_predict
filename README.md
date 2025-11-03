@@ -10,12 +10,32 @@
 - [x] 모델 검증 및 튜닝 (5-Fold TimeSeriesSplit)
 - [x] 예측 생성 및 제출 파일 생성
 - [x] 모델 실행
+- [x] **1위 노트북 분석 및 개선 모델 개발**
+- [x] **Kaggle 제출용 노트북 작성**
 
 ## 현재 모델 성능
+
+### 기본 모델 (stock_prediction_model.py)
 - **평균 RMSE**: 0.010937
 - **평균 R2**: 0.000550
 - **앙상블 구성**: LightGBM(40%) + XGBoost(30%) + CatBoost(30%)
 - **특성 수**: 144개 (기본 94개 + 생성 50개)
+- **타겟**: forward_returns
+
+### 개선 모델 (improved_model.py + submission_notebook.ipynb)
+- **기반**: 1위 노트북 전략 분석
+- **타겟**: market_forward_excess_returns (시장 초과 수익률)
+- **특성 수**: 36개 (엄선된 특성 + 향상된 엔지니어링)
+- **핵심 특성**:
+  - 1위 모델의 13개 핵심 특성 활용
+  - U1 = I2 - I1 (산업지표 차이)
+  - U2 = M11 / ((I2 + I9 + I7) / 3) (시장/산업 비율)
+  - 추가 비율 특성: M_ratio, P_ratio, V_ratio
+  - 그룹별 평균: E_mean, S_mean, P_mean
+  - 상호작용 특성: SE_interact, PM_interact, IM_interact
+- **결측치 처리**: EWM (지수가중이동평균) 사용
+- **신호 변환**: 예측값 × 400 + 1, [0, 2] 범위 클리핑
+- **앙상블**: LightGBM(50%) + XGBoost(25%) + CatBoost(25%)
 
 ## TODO: 모델 개선 및 추가 작업
 
@@ -93,12 +113,15 @@
 ## 파일 구조
 ```
 stock_predict/
-├── README.md                       # 현재 파일
-├── stock_prediction_model.py       # 메인 모델 코드
+├── README.md                       # 프로젝트 문서
+├── stock_prediction_model.py       # 기본 모델 코드
+├── improved_model.py               # 개선된 모델 (1위 노트북 기반)
+├── submission_notebook.ipynb       # Kaggle 제출용 노트북
+├── notebook-17score.ipynb          # 1위 노트북 (참고용)
 ├── train.csv                       # 학습 데이터
 ├── test.csv                        # 테스트 데이터
-├── submission.csv                  # 제출 파일 (CSV)
-└── submission.parquet              # 제출 파일 (Parquet)
+├── submission.csv                  # 기본 모델 제출 파일 (CSV)
+└── submission.parquet              # 기본 모델 제출 파일 (Parquet)
 ```
 
 ## 실행 방법
