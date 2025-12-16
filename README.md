@@ -166,33 +166,54 @@ optimize(opt_window)  # test 정답 포함
 
 ```
 stock_predict/
-├── README.md                           # 프로젝트 문서 (본 파일)
-├── model7_analysis.md                  # Model 7 Data Leakage 분석
-├── result.md                           # 기본 모델 결과
-├── FEATURE_SELECTION_STRATEGY.md       # Feature 선택 전략
 │
-├── ensemble_model7_chronos.ipynb       # ✨ 최종 앙상블 노트북
-├── hull-starter-notebook_17.ipynb      # 원본 17점 노트북 (참고)
-├── notebook-17score.ipynb              # 분석용 노트북
+├── 📚 문서
+│   ├── README.md                           # 프로젝트 메인 문서 (본 파일)
+│   ├── FINAL_STRUCTURE.md                  # 최종 파일 구조 상세 설명
+│   ├── model7_analysis.md                  # Model 7 Data Leakage 분석
+│   ├── FEATURE_SELECTION_STRATEGY.md       # Feature 선택 전략
+│   └── result.md                           # 기본 모델 결과
 │
-├── stock_deep.py                       # Chronos & Informer 구현
-├── train_model7.py                     # Model 7 최적화 코드
-├── compare_all_models.py               # 7개 모델 비교 스크립트
-├── stock_prediction_model.py           # 기본 모델 코드
-├── improved_model.py                   # 개선 모델
-├── feature_importance_analysis.py      # Feature 중요도 분석
+├── 📓 노트북 (4개)
+│   ├── ensemble_model7_chronos.ipynb       # ✨ 최종 앙상블 (Model 7 + Chronos)
+│   ├── hull-starter-notebook_17.ipynb      # 원본 17점 노트북 (참고)
+│   ├── notebook-17score.ipynb              # 분석용 노트북
+│   └── high.ipynb                          # 실험용 노트북
 │
-├── best_chronos.pth                    # 학습된 Chronos 모델 (2.4MB)
-├── best_informer.pth                   # 학습된 Informer 모델 (2.8MB)
+├── 🐍 Python 스크립트 (7개)
+│   ├── stock_deep.py                       # Chronos & Informer 구현
+│   ├── train_model7.py                     # Model 7 훈련 스크립트
+│   ├── compare_all_models.py               # 전체 모델 비교
+│   ├── stock_prediction_model.py           # 기본 모델
+│   ├── improved_model.py                   # 개선 모델
+│   ├── feature_importance_analysis.py      # Feature 중요도 분석
+│   └── find_best_window.py                 # 윈도우 최적화
 │
-├── train.csv                           # 전체 학습 데이터 (8,990 샘플)
-├── train_90.csv                        # Train split (8,091 샘플)
-├── valid_10.csv                        # Valid split (899 샘플)
-├── test.csv                            # 테스트 데이터 (10 샘플)
+├── 🧠 모델 파일
+│   ├── best_chronos.pth                    # Chronos 모델 (2.4MB)
+│   └── best_informer.pth                   # Informer 모델 (2.8MB)
 │
-├── submission.csv                      # 제출 파일 (CSV)
-└── submission.parquet                  # 제출 파일 (Parquet)
+├── 📊 데이터 파일
+│   ├── train.csv                           # 전체 학습 데이터 (8,990 샘플, 12MB)
+│   ├── train_90.csv                        # Train split (8,091 샘플, 11MB)
+│   ├── valid_10.csv                        # Valid split (899 샘플, 1.4MB)
+│   └── test.csv                            # 테스트 데이터 (10 샘플)
+│
+├── 📈 분석 결과
+│   ├── feature_importance_analysis.csv     # Feature 중요도 데이터
+│   └── feature_importance_comparison.png   # Feature 중요도 시각화
+│
+└── 📦 kaggle_evaluation/                   # Kaggle 평가 라이브러리
+    ├── __init__.py
+    ├── default_gateway.py
+    ├── default_inference_server.py
+    └── core/
 ```
+
+**총 핵심 파일:** 21개 (노트북 4 + Python 7 + 모델 2 + 데이터 4 + 문서 5)
+**디스크 사용량:** ~30MB (kaggle_evaluation 제외)
+
+> 📝 자세한 파일 설명 및 삭제된 파일 목록은 [FINAL_STRUCTURE.md](FINAL_STRUCTURE.md) 참조
 
 ---
 
